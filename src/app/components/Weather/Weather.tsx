@@ -121,7 +121,7 @@ export default function Weather(props: WeatherPropType) {
         <div className="max-w-md mx-auto bg-white rounded-xl shadow-md md:max-w-2xl">
             <div className="md:flex">
                 <div className="md:shrink-0 items-center p-10">
-                    <Image
+                    <img
                         src={`${weatherData?.current && getImgURL(isWeatherRealtime(weatherData) ? weatherData.current.condition.icon : '')}`}
                         alt={`${weatherData?.current && isWeatherRealtime(weatherData) ? weatherData?.current.condition.text : 'Not found'}`}
                     />

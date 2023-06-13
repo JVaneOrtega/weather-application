@@ -39,8 +39,7 @@ export default function Calendar(props: CalendarPropType) {
                 return <div key={i} className="max-w-lg mx-auto bg-white rounded-xl shadow-md">
                     <div className="md:flex">
                         <div className="md:shrink-0 items-center p-10">
-                            <Image src={`${imageURL}`} alt={`${imageAlt}`}
-                            />
+                            <img src={`${imageURL}`} alt={`${imageAlt}`}/>
                         </div>
                         <div className="p-8">
                             <div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold">{dateFormatted}</div>
