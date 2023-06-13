@@ -3,6 +3,7 @@ import { Grid, Card, Text } from "@nextui-org/react";
 import { CalendarPropType } from "./CalendarPropType";
 import { useEffect, useState } from "react";
 import dayjs from "dayjs";
+import Image from "next/image";
 
 export default function Calendar(props: CalendarPropType) {
     const {
@@ -13,7 +14,7 @@ export default function Calendar(props: CalendarPropType) {
 
     useEffect(() => {
         if (forecast && forecast.length > 2) {
-            const weatherCards = forecast.map(dayItem => {
+            const weatherCards = forecast.map((dayItem, i) => {
                 const {
                     date,
                     day
@@ -35,10 +36,10 @@ export default function Calendar(props: CalendarPropType) {
                 const textTemperatureMax = `Max: ${maxtemp_c}`;
                 const textTemperatureAvg = `Avg: ${avgtemp_c}`;
 
-                return <div className="max-w-lg mx-auto bg-white rounded-xl shadow-md">
+                return <div key={i} className="max-w-lg mx-auto bg-white rounded-xl shadow-md">
                     <div className="md:flex">
                         <div className="md:shrink-0 items-center p-10">
-                            <img src={`${imageURL}`} alt={`${imageAlt}`}
+                            <Image src={`${imageURL}`} alt={`${imageAlt}`}
                             />
                         </div>
                         <div className="p-8">
@@ -62,8 +63,8 @@ export default function Calendar(props: CalendarPropType) {
         <Grid.Container gap={2} justify="center">
             {
                 weatherDays.length > 0 &&
-                weatherDays.map(component => (
-                    <Grid xl={4} lg={4} md={4} sm={12} xs={12}>
+                weatherDays.map((component, i) => (
+                    <Grid key={i} xl={4} lg={4} md={4} sm={12} xs={12}>
                         {component}
                     </Grid>
                 ))

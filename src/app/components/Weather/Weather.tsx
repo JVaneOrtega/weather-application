@@ -3,6 +3,7 @@ import { WeatherPropType } from "./WeatherPropType";
 import { WeatherRealtime } from '@/app/types/WeatherRealtime';
 import { WeatherForecast } from "@/app/types/WeatherForecast";
 import axios, { AxiosError } from 'axios';
+import Image from "next/image";
 
 export default function Weather(props: WeatherPropType) {
     const [weatherData, setWeatherData] = useState<WeatherRealtime>();
@@ -82,7 +83,7 @@ export default function Weather(props: WeatherPropType) {
             getDataForecast(city)
             localStorage.setItem("city", city)
         }, 300);
-    }, [city]);
+    }, [city, setIsLoading]);
 
     useEffect(() => {
         let name: string = '', tempe: string = '', desc: string = '';
@@ -114,13 +115,13 @@ export default function Weather(props: WeatherPropType) {
         setTemperature(tempe);
         setDescription(desc);
         setIsLoading(false);
-    }, [weatherData, forecastData]);
+    }, [weatherData, forecastData, setForecast, setIsDay, setIsLoading]);
 
     return (
         <div className="max-w-md mx-auto bg-white rounded-xl shadow-md md:max-w-2xl">
             <div className="md:flex">
                 <div className="md:shrink-0 items-center p-10">
-                    <img
+                    <Image
                         src={`${weatherData?.current && getImgURL(isWeatherRealtime(weatherData) ? weatherData.current.condition.icon : '')}`}
                         alt={`${weatherData?.current && isWeatherRealtime(weatherData) ? weatherData?.current.condition.text : 'Not found'}`}
                     />
